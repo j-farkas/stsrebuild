@@ -1,0 +1,9 @@
+.Hand {
+  display: grid;
+  grid-template-columns: repeat(7);
+}
+
+.available{
+  border: outset 3px green;
+  border-radius: 8px;
+}

@@ -1,0 +1,17 @@
+div.Splash{
+  background-image: url("../assets/img/sts.png");
+  repeat: no-repeat;
+  background-size: cover;
+  height: stretch;
+  width: stretch;
+}
+
+h1.Splash{
+  text-align:center;
+  color: white;
+}
+
+h2.Splash{
+  text-align:center;
+  color: white;
+}
