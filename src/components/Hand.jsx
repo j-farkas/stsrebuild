@@ -4,6 +4,7 @@ import Card from './Card';
 import './Hand.css';
 
 export default function Hand(props) {
+
   function playCard(cardText, index){
     props.playCard(cardText, index);
   }

@@ -12,9 +12,16 @@ export class GameController extends React.Component {
 
   constructor(props) {
     super(props);
-    fetch('api/SampleData/Enemies/1')
+    fetch('http://localhost:12345/Enemies',
+      {
+        method: 'POST',
+        body: JSON.stringify({"level":1})
+
+      }
+  )
       .then(response => response.json())
       .then(data => {
+        console.log("through here")
          console.log(data);
          this.setState({ nextEnemy: data});
          console.log(this.state);
@@ -87,7 +94,13 @@ export class GameController extends React.Component {
     this.setState({deck: this.state.deck.slice(5), hand: this.state.deck.slice(0,5), discard: [], rewards: []});
     this.setState({reward:false, map: true});
     console.log(this.state);
-    fetch('api/SampleData/Enemies/'+this.state.difficulty)
+    fetch('http://localhost:12345/Enemies',
+      {
+        method: 'POST',
+        body: JSON.stringify({"level":this.state.difficulty})
+
+      }
+  )
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -125,7 +138,13 @@ export class GameController extends React.Component {
       rewards: [],
       gameOver: false
       })
-      fetch('api/SampleData/Enemies/1')
+      fetch('http://localhost:12345/Enemies',
+        {
+          method: 'POST',
+          body: JSON.stringify({"level":1})
+
+        }
+    )
         .then(response => response.json())
         .then(data => {
            console.log(data);
@@ -147,7 +166,13 @@ export class GameController extends React.Component {
 
   handleStartBattle(){
     this.setState({map:false, battle: true});
-    fetch('api/SampleData/Rewards/'+this.state.difficulty)
+    fetch('http://localhost:12345/Rewards',
+      {
+        method: 'POST',
+        body: JSON.stringify({"level":this.state.difficulty})
+
+      }
+  )
       .then(response => response.json())
       .then(data => {
         data.forEach((el)=>{
@@ -383,7 +408,7 @@ export class GameController extends React.Component {
       return(
         <div className="page"><Header player={this.state.player} viewDeck = {this.viewDeck}></Header>
           <Enemy enemy={this.state.nextEnemy} enemybuffs = {this.state.enemybuffs} enemydebuffs = {this.state.enemydebuffs} playerbuffs = {this.state.playerbuffs} playerdebuffs = {this.state.playerdebuffs} endTurn = {this.endTurn} activeEnemy={this.state.activeEnemy}></Enemy>
-          <Hand  enemybuffs = {this.state.enemybuffs} enemydebuffs = {this.state.enemydebuffs} playerbuffs = {this.state.playerbuffs} playerdebuffs = {this.state.playerdebuffs} cards={this.state.hand} useCard = {this.useCard} player = {this.state.player}></Hand>
+          <Hand  enemybuffs = {this.state.enemybuffs} enemydebuffs = {this.state.enemydebuffs} playerbuffs = {this.state.playerbuffs} playerdebuffs = {this.state.playerdebuffs} cards={this.state.hand} playCard = {this.useCard} player = {this.state.player}></Hand>
         </div>
       );
     }if(this.state.reward === true){
